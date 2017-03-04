@@ -13,5 +13,8 @@
         <result property="email" column="email"/>
     </resultMap>
 
+    <select id="login" parameterType="User" resultMap="UserResult">
+        SELECT * FROM user WHERE username=#{username} AND password=#{password}
+    </select>
 
 </mapper>
