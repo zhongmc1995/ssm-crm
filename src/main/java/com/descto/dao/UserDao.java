@@ -2,6 +2,9 @@ package com.descto.dao;
 
 import com.descto.entity.User;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户Dao接口
  * Created by descto on 17-3-4.
@@ -9,9 +12,10 @@ import com.descto.entity.User;
 public interface UserDao {
 
     /**
-     * 用户登录
-     * @param user
+     * 根据手机号查找用户
+     * @param tel
      * @return
      */
-    public User login(User user);
+    User findByTel(String tel);
+
 }

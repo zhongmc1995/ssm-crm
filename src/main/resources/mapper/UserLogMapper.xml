@@ -2,9 +2,6 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.descto.dao.UserDao">
+<mapper namespace="com.descto.dao.UserLogDao">
     <cache/>
-    <select id="findByTel" resultType="com.descto.entity.User">
-        SELECT * FROM t_user WHERE tel=#{tel}
-    </select>
 </mapper>

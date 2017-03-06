@@ -1,17 +1,22 @@
 package com.descto.entity;
 
+import java.io.Serializable;
+
 /**
  * 用户实体
  * Created by descto on 17-3-4.
  */
-public class User {
+public class User implements Serializable {
 
-    private Integer id; //编号
-    private String username; //用户名
-    private String password; //密码
-    private String tureName; //真实姓名
-    private String phone; //电话
-    private String email; //邮件
+    public static final String USER_STATE_OK = "正常";
+    public static final String USER_STATE_DISABLE = "禁用";
+
+    private Integer id;
+    private String username; //员工姓名
+    private String password;
+    private String tel;
+    private String createtime; //创建时间
+    private String state; //员工状态
 
     public Integer getId() {
         return id;
@@ -37,27 +42,27 @@ public class User {
         this.password = password;
     }
 
-    public String getTureName() {
-        return tureName;
+    public String getTel() {
+        return tel;
     }
 
-    public void setTureName(String tureName) {
-        this.tureName = tureName;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
-    public String getEmail() {
-        return email;
+    public String getState() {
+        return state;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setState(String state) {
+        this.state = state;
     }
 }

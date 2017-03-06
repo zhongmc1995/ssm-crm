@@ -7,24 +7,16 @@
 
   <display-name>SSM_CRM</display-name>
 
-  <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
-  </welcome-file-list>
-
-  <!-- Spring配置文件 -->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext.xml</param-value>
-  </context-param>
-
-  <!-- 编码过滤器 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-    <async-supported>true</async-supported>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
     </init-param>
   </filter>
   <filter-mapping>
@@ -32,24 +24,50 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <!-- Spring监听器 -->
+  <!--Apache Shiro Filter-->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!--Druid监控页面-->
+<!--  <servlet>
+    <servlet-name>Druid</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Druid</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>-->
+
+  <!-- Spring MVC -->
+  <servlet>
+    <servlet-name>mvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mvc</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <!--配置Spring容器初始化监听器-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
-  <!-- 添加对Spring MVC的支持 -->
-  <servlet>
-    <servlet-name>springMVC</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:SpringMVC.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-    <async-supported>true</async-supported>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>springMVC</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:applicationContext*.xml</param-value>
+  </context-param>
+
+  <error-page>
+    <error-code>401</error-code>
+    <location>/static/html/401.html</location>
+  </error-page>
+
 </web-app>
