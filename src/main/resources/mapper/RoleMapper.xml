@@ -3,6 +3,6 @@
 <mapper namespace="com.descto.dao">
     <cache/>
     <select id="findByUserId" resultType="com.descto.entity.Role">
-        SELECT * FROM t_role id IN (SELECT roleid FROM role_user WHERE userid=#{userid})
+        SELECT * FROM t_role WHERE id IN (SELECT roleid FROM role_user WHERE userid = #{userId})
     </select>
 </mapper>

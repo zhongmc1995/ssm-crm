@@ -48,6 +48,12 @@ public class ShiroRealm extends AuthorizingRealm {
         return null;
     }
 
+    /**
+     * 登录方法
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 

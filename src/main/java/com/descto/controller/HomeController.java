@@ -18,15 +18,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class HomeController {
 
-    @Value("${user.salt}")
-    private String passwordSalt;
+/*    @Value("${user.salt}")
+    private String passwordSalt;*/
 
     /**
      * 登录页面
      * @return
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index() {
         return "index";
     }
 
@@ -47,7 +47,7 @@ public class HomeController {
         }
         try {
             //登录，调用ShiroRealm类中的登录认证方法
-            subject.login(new UsernamePasswordToken(tel, DigestUtils.md5Hex(password + passwordSalt)));
+            subject.login(new UsernamePasswordToken(tel, DigestUtils.md5Hex(password)));
             return "redirect:/home";
         } catch (AuthenticationException e) {
             e.printStackTrace();

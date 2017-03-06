@@ -59,10 +59,17 @@
     $(function(){
         Morris.Bar({
             element: 'myfirstchart',
-            data: ${json},
-            xkey: 'custtype',
-            ykeys: ['total'],
-            labels: ['total']
+            data: [
+                {x: '初访', y: 3},
+                {x: '意向', y: 2 },
+                {x: '报价', y: 4 },
+                {x: '成交', y: 2},
+                {x: '暂时搁置', y: 2},
+                {x: '无', y: 2},
+            ],
+            xkey: 'x',
+            ykeys: ['y'],
+            labels: ['Y']
         }).on('click', function(i, row){
             console.log(i, row);
         });
